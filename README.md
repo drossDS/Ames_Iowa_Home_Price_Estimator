@@ -13,24 +13,83 @@ Data were provided for home sales in the city of Ames, Iowa between 2006 and 201
 
 A total of 2051 individual home sales are included in this dataset which was split into training and test datasets with 1435 and 616 samples respectively (representing a 70/30 split).
 
-As this model attempts to predict sale prices, the target variable was the sale price from the provided data.
+Of the data provided, the following features were selected for use in the final model:
+* Total basement square footage
+* Garage square footage
+* Overall home quality
+* Year the home was remodeled or added to
+* Total square feet, 
+* Square footage of masonry
+* Number of fireplaces
+* Neighborhood
 
-
+Additional features were created using the data above to improve model performance.  A full list of features can be found in the appendix of this executive summary.
 
 
 
 How this Model Works
-This model takes in numerical features selected for their correlation to sale price or impact on model performance. They include the total basement square footage, garage square footage, overall home quality, year the home was remodeled or added to, the total square feet, the square footage of masonry, and the number of fireplaces. These numerical features are then used to create interaction terms which are products of each of these features and themselves creating first and second order polynomial terms. Including these polynomial features was found to greatly enhance the model performance. Categorical columns which were one hot encoded are included for eight of the 28 total neighborhoods in Ames, Iowa which - when included in the model - enhanced its performance.
-
-The model itself is a simple linear regression model performing ordinary least squares regression. It creates a multi-dimensional 'line of best fit' with slope and intercept terms for each feature. As this model is geared towards prediction, these terms are of lesser importance, especially considering that this model contains multicollinearity. The model is fitted against log-transformed sale price data as this was seen to improve performance. The prediction made by this model themselves are log data which are then exponentiated to return outputs in the original sale price units of dollars.
+This model takes in the numerical features listed above which were selected for their correlation to sale price or impact on model performance. These numerical features are then used to create interaction terms which are products of each of these features and themselves creating first and second order polynomial terms. Including these polynomial features was found to greatly enhance the model performance. Categorical columns which were one hot encoded are included for eight of the 28 total neighborhoods in Ames, Iowa which - when included in the model - enhanced its performance.  The model itself is a simple linear regression model performing ordinary least squares regression. The model is fitted against log-transformed sale price data as this was seen to improve performance. The predictions made by this model are themselves log data which are then exponentiated to return outputs in the original sale price units of dollars.
 
 
 
 
 
 
+__________________________________________
+
+Appendix A - Data Dictionary for Final Model
+
+| Feature                      | Data Type | Dataset                     | Description                                                                            |
+|------------------------------|-----------|-----------------------------|----------------------------------------------------------------------------------------|
+| Total Bsmt SF                | Float64   | Kaggle, Ames, Iowa          | TotalBsmtSF: Total square feet of basement area                                        |
+| Garage Area                  | Float64   | Kaggle, Ames, Iowa          | GarageArea: Size of garage in square feet                                              |
+| Overall Qual                 | Float64   | Kaggle, Ames, Iowa          | OverallQual: Overall material and finish quality                                       |
+| Year Remod/Add               | Float64   | Kaggle, Ames, Iowa          | YearRemodAdd: Remodel date (same as construction date if no remodeling or   additions) |
+| Gr Liv Area                  | Float64   | Kaggle, Ames, Iowa          | GrLivArea: Above grade (ground) living area square feet                                |
+| Mas Vnr Area                 | Float64   | Kaggle, Ames, Iowa          | MasVnrArea: Masonry veneer area in square feet                                         |
+| Fireplaces                   | Float64   | Kaggle, Ames, Iowa          | Fireplaces: Number of fireplaces                                                       |
+| Total Bsmt SF^2              | Float64   | Derived                     | Second order interaction term                                                          |
+| Total Bsmt SF Garage Area    | Float64   | Derived                     | First order interaction term                                                           |
+| Total Bsmt SF Overall Qual   | Float64   | Derived                     | First order interaction term                                                           |
+| Total Bsmt SF Year Remod/Add | Float64   | Derived                     | First order interaction term                                                           |
+| Total Bsmt SF Gr Liv Area    | Float64   | Derived                     | First order interaction term                                                           |
+| Total Bsmt SF Mas Vnr Area   | Float64   | Derived                     | First order interaction term                                                           |
+| Total Bsmt SF Fireplaces     | Float64   | Derived                     | First order interaction term                                                           |
+| Garage Area^2                | Float64   | Derived                     | Second order interaction term                                                          |
+| Garage Area Overall Qual     | Float64   | Derived                     | First order interaction term                                                           |
+| Garage Area Year Remod/Add   | Float64   | Derived                     | First order interaction term                                                           |
+| Garage Area Gr Liv Area      | Float64   | Derived                     | First order interaction term                                                           |
+| Garage Area Mas Vnr Area     | Float64   | Derived                     | First order interaction term                                                           |
+| Garage Area Fireplaces       | Float64   | Derived                     | First order interaction term                                                           |
+| Overall Qual^2               | Float64   | Derived                     | Second order interaction term                                                          |
+| Overall Qual Year Remod/Add  | Float64   | Derived                     | First order interaction term                                                           |
+| Overall Qual Gr Liv Area     | Float64   | Derived                     | First order interaction term                                                           |
+| Overall Qual Mas Vnr Area    | Float64   | Derived                     | First order interaction term                                                           |
+| Overall Qual Fireplaces      | Float64   | Derived                     | First order interaction term                                                           |
+| Year Remod/Add^2             | Float64   | Derived                     | Second order interaction term                                                          |
+| Year Remod/Add Gr Liv Area   | Float64   | Derived                     | First order interaction term                                                           |
+| Year Remod/Add Mas Vnr Area  | Float64   | Derived                     | First order interaction term                                                           |
+| Year Remod/Add Fireplaces    | Float64   | Derived                     | First order interaction term                                                           |
+| Gr Liv Area^2                | Float64   | Derived                     | Second order interaction term                                                          |
+| Gr Liv Area Mas Vnr Area     | Float64   | Derived                     | First order interaction term                                                           |
+| Gr Liv Area Fireplaces       | Float64   | Derived                     | First order interaction term                                                           |
+| Mas Vnr Area^2               | Float64   | Derived                     | Second order interaction term                                                          |
+| Mas Vnr Area Fireplaces      | Float64   | Derived                     | First order interaction term                                                           |
+| Fireplaces^2                 | Float64   | Derived                     | Second order interaction term                                                          |
+| Neighborhood_Edwards         | uint8     | Kaggle, Ames, Iowa, Encoded | Neighborhood: Physical locations within Ames city limits                               |
+| Neighborhood_IDOTRR          | uint8     | Kaggle, Ames, Iowa, Encoded | Neighborhood: Physical locations within Ames city limits                               |
+| Neighborhood_NAmes           | uint8     | Kaggle, Ames, Iowa, Encoded | Neighborhood: Physical locations within Ames city limits                               |
+| Neighborhood_NoRidge         | uint8     | Kaggle, Ames, Iowa, Encoded | Neighborhood: Physical locations within Ames city limits                               |
+| Neighborhood_NridgHt         | uint8     | Kaggle, Ames, Iowa, Encoded | Neighborhood: Physical locations within Ames city limits                               |
+| Neighborhood_OldTown         | uint8     | Kaggle, Ames, Iowa, Encoded | Neighborhood: Physical locations within Ames city limits                               |
+| Neighborhood_Somerst         | uint8     | Kaggle, Ames, Iowa, Encoded | Neighborhood: Physical locations within Ames city limits                               |
+| Neighborhood_StoneBr         | uint8     | Kaggle, Ames, Iowa, Encoded | Neighborhood: Physical locations within Ames city limits                               |
+    
+Codebook / Data Dictionary Entries for Original Features (not interaction terms) Taken Directly from the Kaggle Competition Site: [link](https://www.kaggle.com/competitions/dsir-320-project-2-regression-challenge/data)
 
 
+
+____________________________________
 
 Welcome to Project 2! It's time to start modeling.
 
