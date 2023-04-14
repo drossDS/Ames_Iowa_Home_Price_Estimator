@@ -36,7 +36,7 @@ A simple liear regression model was built, and features were added or removed it
 
 # 3 - Model Performance
 
-The model met the overall requirement that the average sale price error (in either direction) be within $30k. The mean absolute error values in the table below are far below that limit.  Overall, the vast majority of the home prices were predicted to be within \\$30k of the true sale price with 83.8% achieving this metric.
+The final model met the overall requirement that the average sale price error (in either direction) be within $30k. The mean absolute error values in the table below are far below that limit.  Overall, the vast majority of the home prices were predicted to be within \\$30k of the true sale price with 83.8% achieving this metric.
 
 The R-Squared values below indicate two things:
 * Almost 90% of the variabilty in sale price is accounted for by this model with the features selected
@@ -53,7 +53,7 @@ The R-Squared values below indicate two things:
 | Mean Absolute Error (MAE), Testing Data  | $18,643             |
 | Percentage Within $30k, Training Data    | 83.7631%            |
 
-
+A total of seven other models were attemtped, however, none delivered performacne metrics as good as those of the final model above.  Ridge and Lasso regularization techniques were attempted with the final model as well, but as the model already had an excellent balance of bias and variance, regularization only decreased model performance.  A comparison of all models with their performance metrics can be found in Appendix C and the code notebook.
 
 
 
@@ -111,3 +111,22 @@ Codebook / Data Dictionary Entries for Original Features (not interaction terms)
 
 # Appendix B - How this Model Works
 This model takes in the numerical features listed above which were selected for their correlation to sale price or impact on model performance. These numerical features are then used to create interaction terms which are products of each of these features and themselves creating first and second order polynomial terms. Including these polynomial features was found to greatly enhance the model performance. Categorical columns which were one hot encoded are included for eight of the 28 total neighborhoods in Ames, Iowa which - when included in the model - enhanced its performance.  The model itself is a simple linear regression model performing ordinary least squares regression. The model is fitted against log-transformed sale price data as this was seen to improve performance. The predictions made by this model are themselves log data which are then exponentiated to return outputs in the original sale price units of dollars.
+
+# Appendix C - Comparison of Models Attemtped
+|                 | ILR     | data_1  | data_2  | data_3  | data_4  | data_5_poly | data_6_poly | data_7_poly_nbr (Final) | data_7_poly_nbr_log | data_7_poly_nbr_log_ridge | data_7_poly_nbr_log_lasso |
+|-----------------|---------|---------|---------|---------|---------|-------------|-------------|-------------------------|---------------------|---------------------------|---------------------------|
+| R2_train        | 0.8621  | 0.8269  | 0.8556  | 0.8743  | 0.8262  | 0.8735      | 0.8817      | 0.8902                  | 0.8946              | 0.8935                    | 0.8919                    |
+| R2_test         | 0.7976  | 0.7389  | 0.7856  | 0.7769  | 0.7521  | 0.8697      | 0.8715      | 0.876                   | 0.8921              | 0.8888                    | 0.8876                    |
+| RMSE_train      | 29492   | 33043   | 30177   | 28155   | 33114   | 28250       | 27314       | 26319                   | 25789               | 25921                     | 26111                     |
+| RMSE_test       | 35452   | 40265   | 36486   | 37221   | 39233   | 28437       | 28241       | 27749                   | 25887               | 26279                     | 26417                     |
+| mae_train       | 19786   | 22611   | 20319   | 18457   | 21256   | 19571       | 19080       | 18437                   | 17692               | 17745                     | 17879                     |
+| mae_test        | 20797   | 23716   | 21498   | 20792   | 22618   | 20062       | 19799       | 19569                   | 18643               | 18671                     | 18779                     |
+| Within $30k (%) | 80.8362 | 75.4007 | 79.6516 | 82.7178 | 78.9547 | 81.324      | 81.5331     | 82.2997                 | 83.7631             | 83.554                    | 83.2753                   |
+| cv_train_mean   | 0.8232  | 0.7921  | 0.8214  | 0.8358  | 0.8188  | 0.8135      | 0.7955      | 0.8067                  | 0.8067              | NaN                       | NaN                       |
+| cv_train_1      | 0.8366  | 0.8321  | 0.8385  | 0.8737  | 0.859   | 0.8575      | 0.8737      | 0.8732                  | 0.8732              | NaN                       | NaN                       |
+| cv_train_2      | 0.8572  | 0.8141  | 0.8529  | 0.8802  | 0.8415  | 0.8554      | 0.8605      | 0.874                   | 0.874               | NaN                       | NaN                       |
+| cv_train_3      | 0.7984  | 0.7651  | 0.8056  | 0.8111  | 0.8369  | 0.8646      | 0.8517      | 0.8614                  | 0.8614              | NaN                       | NaN                       |
+| cv_train_4      | 0.854   | 0.8431  | 0.849   | 0.8609  | 0.8626  | 0.8638      | 0.8691      | 0.8772                  | 0.8772              | NaN                       | NaN                       |
+| cv_train_5      | 0.7699  | 0.706   | 0.7608  | 0.7532  | 0.6939  | 0.6263      | 0.5223      | 0.5479                  | 0.5479              | NaN                       | NaN                       |
+| R2_train_log    | NaN     | NaN     | NaN     | NaN     | NaN     | NaN         | NaN         | NaN                     | 0.8768              | 0.8729                    | 0.8735                    |
+| R2_test_log     | NaN     | NaN     | NaN     | NaN     | NaN     | NaN         | NaN         | NaN                     | 0.8662              | 0.8676                    | 0.8664                    |
