@@ -1,9 +1,11 @@
 # Project 2 - Ames Housing Data and Kaggle Challenge
 
+## Home Sale Price Estimator for Zillow
+### Daniel Rossetti, Data Science Consultant Hired by Zillow
 
 
-
-
+1. Problem Statement:
+Zillow wishes to prototype a home sale price estimator that can be used by website users to estimate the value of their home or home they wish to buy.  Home sale data from Ames, Iowa have been provided as a starter set and include information on almost 80 different attributes of the home or the sale itself.  This data will be used to train a linear regression model which will use a subset of these attributes to predict a home sale price.  The model quality will be evaluated against the mean absolute error of the predictions on the training dataset selected.  The target error is to be within $30,000 of the actual home price on average.  If successful, the methods used to create this prototype model will be employed to predict home values in other areas of the country to understand it's general applicability with the ultimate goal of being rolled out onto the Zillow website for users.
 
 
 
