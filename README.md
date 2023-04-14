@@ -4,12 +4,25 @@
 ### Daniel Rossetti, Data Science Consultant Hired by Zillow
 
 
-1. Problem Statement:
+# 1. Problem Statement:
 Zillow wishes to prototype a home sale price estimator that can be used by website users to estimate the value of their home or home they wish to buy.  Home sale data from Ames, Iowa have been provided as a starter set and include information on almost 80 different attributes of the home or the sale itself.  This data will be used to train a linear regression model which will use a subset of these attributes to predict a home sale price.  The model quality will be evaluated against the mean absolute error of the predictions on the training dataset selected.  The target error is to be within $30,000 of the actual home price on average.  If successful, the methods used to create this prototype model will be employed to predict home values in other areas of the country to understand it's general applicability with the ultimate goal of being rolled out onto the Zillow website for users.
 
+# 2. Description of Data, Overview of Analysis and Modeling
+## 2.1 Description of Data
+Data were provided for home sales in the city of Ames, Iowa between 2006 and 2010.  The data can be found [here](https://www.kaggle.com/competitions/dsir-320-project-2-regression-challenge/data).
+
+A total of 2051 individual home sales are included in this dataset which was split into training and test datasets with 1435 and 616 samples respectively (representing a 70/30 split).
+
+As this model attempts to predict sale prices, the target variable was the sale price from the provided data.
 
 
 
+
+
+How this Model Works
+This model takes in numerical features selected for their correlation to sale price or impact on model performance. They include the total basement square footage, garage square footage, overall home quality, year the home was remodeled or added to, the total square feet, the square footage of masonry, and the number of fireplaces. These numerical features are then used to create interaction terms which are products of each of these features and themselves creating first and second order polynomial terms. Including these polynomial features was found to greatly enhance the model performance. Categorical columns which were one hot encoded are included for eight of the 28 total neighborhoods in Ames, Iowa which - when included in the model - enhanced its performance.
+
+The model itself is a simple linear regression model performing ordinary least squares regression. It creates a multi-dimensional 'line of best fit' with slope and intercept terms for each feature. As this model is geared towards prediction, these terms are of lesser importance, especially considering that this model contains multicollinearity. The model is fitted against log-transformed sale price data as this was seen to improve performance. The prediction made by this model themselves are log data which are then exponentiated to return outputs in the original sale price units of dollars.
 
 
 
