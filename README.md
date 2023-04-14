@@ -58,6 +58,32 @@ A total of seven other models were attemtped, however, none delivered performacn
 
 
 
+
+# 4 - Model Limitations and Additional Refinements
+* Stated previously, these models are not geared towards inference and shound not be used to establish confident relationships between the selected features and the target variable
+* With more time, more attention could be given to categorical variables which may help to better characterize the sale prices of higher value homes than the current model
+* The model could stand to be de-featured to make room for other higher-correlation features.  While it has been stated that multicolinearity exists but is acceptable, some terms may be found to be redundant with more time
+
+# 5 - Conclusions:
+* A model can be created which will predict home prices in Ames Iowa within a Mean Absolute Error (MAE) \\$30,000
+    * With the final model, 83.8% of sale prices were prediced to within $30,000 (on the training data)
+* The model exibits a good balance of bias and variance as the R-sqaured terms of this model on both the training and test data are nearly identical
+* The model can be further refined to incorporate more features, but as it stands, must collect the following information from users when estimating a home sale price:
+    * Total basement square footage
+    * Garage square footage
+    * Overall quality of the home on a 1 - 10 scale with 1 being poor and 10 being excellent
+    * Year the home was remodeled or added to, defaulting to the year it was built if not remodeled or added to
+    * Total Square footage (not including the basement and garage) also known as the 'graded living area'
+    * Square footage of masonry veneer
+    * Number of fireplaces in the home
+    * Neighborhood in which the home resides
+    
+# 6 - Next Steps:
+* The characterisitcs of homes with absolute sale price errors exceeding \\$30,000 should be examined to determine if they exhibit and particular traits that could be better modeled in a future verson of this model
+    * A framework for this analysis has been established in Appendix B, though the analysis was not able to be completed in time
+* The model should first be optimized by removing features that appear to be redundant or colinear with other features that do not noticably increase the performance of the model when included
+* Additional categorical variables can be encoded and evluated for correlation with the sales price to possibly be included in a future version of this model
+* Test this model on housing data from other time periods and other areas of the country to determine national applicability
 __________________________________________
 # Appendix A - Data Dictionary for Final Model
 
