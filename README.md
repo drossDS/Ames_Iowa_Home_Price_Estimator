@@ -27,35 +27,35 @@ Additional features were created using the data above to improve model performan
 
 ## 2.2 - Feature Analysis
 Features were selected for modeling which:
-* Are a common characteristic that a home buyer or seller may be intersted in
+* Are a common characteristic that a home buyer or seller may be interested in
 * Showed a decent correlation to the sale price
 * Were shown to improve model performance
 
 ## 2.3 - Modeling
-A simple liear regression model was built, and features were added or removed iteratively to continually improve the performance of the model.  See Appendix B for more information on how this model works.
+A simple linear regression model was built, and features were added or removed iteratively to continually improve the performance of the model.  See Appendix B for more information on how this model works.
 
 # 3 - Model Performance
 
 The final model met the overall requirement that the average sale price error (in either direction) be within $30k. The mean absolute error values in the table below are far below that limit.  Overall, the vast majority of the home prices were predicted to be within $30k of the true sale price with 83.8% achieving this metric (on the training data).
 
 The R-Squared values below indicate two things:
-* Almost 90% of the variabilty in sale price is accounted for by this model with the features selected
+* Almost 90% of the variability in sale price is accounted for by this model with the features selected
 * Model has an excellent balance between bias and variance with the R-Squared values on both the training and testing data being nearly identical
-    * This would suggest that this model would provide similar performnace on new data passed throgh it
+    * This would suggest that this model would provide similar performance on new data passed through it
 
 | Performance Metric            | data_7_poly_nbr_log |
 |-------------------------------|---------------------|
 | R-Squared, Training Data                 | 0.8946              |
-| R-Sqaured, Testing Data                  | 0.8921              |
+| R-Squared, Testing Data                  | 0.8921              |
 | RMSE, Training Data                      | $25,789             |
 | RMSE, Testing Data                       | $25,887             |
 | Mean Absolute Error (MAE), Training Data | $17,692             |
 | Mean Absolute Error (MAE), Testing Data  | $18,643             |
 | Percentage Within $30k, Training Data    | 83.7631%            |
 
-A total of seven other models were attemtped, however, none delivered performacne metrics as good as those of the final model above.  Ridge and Lasso regularization techniques were attempted with the final model as well, but as the model already had an excellent balance of bias and variance, regularization only decreased model performance.  A comparison of all models with their performance metrics can be found in Appendix C and the code notebook.
+A total of seven other models were attempted, however, none delivered performance metrics as good as those of the final model above.  Ridge and Lasso regularization techniques were attempted with the final model as well, but as the model already had an excellent balance of bias and variance, regularization only decreased model performance.  A comparison of all models with their performance metrics can be found in Appendix C and the code notebook.
 
-A plot of the residuals can be seen below for both the training and test data.  Note that outliers extend relatively far in each direction.  The gray lines indicate the +/- $30k boundary that was established, and it can clearly be seen that the vast majority of the data exist within those bounds.  Data outside of these boundaries need to be explored ingreater detail to uncover trends or characteristics which would improve the next-generation model.
+A plot of the residuals can be seen below for both the training and test data.  Note that outliers extend relatively far in each direction.  The gray lines indicate the +/- $30k boundary that was established, and it can clearly be seen that the vast majority of the data exist within those bounds.  Data outside of these boundaries need to be explored in greater detail to uncover trends or characteristics which would improve the next-generation model.
 
 ![Residual Distribution](images/resid_distr.png)
 
@@ -65,14 +65,14 @@ Below, the residuals are plotted versus the sale price.  A clear trend can be se
 
 
 # 4 - Model Limitations and Additional Refinements
-* Stated previously, these models are not geared towards inference and shound not be used to establish confident relationships between the selected features and the target variable
+* The final model is not geared towards inference and should not be used to establish confident relationships between the selected features and the target variable
 * With more time, more attention could be given to categorical variables which may help to better characterize the sale prices of higher value homes than the current model
-* The model could stand to be de-featured to make room for other higher-correlation features.  While it has been stated that multicolinearity exists but is acceptable, some terms may be found to be redundant with more time
+* The model could stand to be de-featured to make room for other higher-correlation features.  While it has been stated that multicollinearity exists but is acceptable, some terms may be found to be redundant with more time
 
 # 5 - Conclusions:
 * A model can be created which will predict home prices in Ames Iowa within a Mean Absolute Error (MAE) \\$30,000
-    * With the final model, 83.8% of sale prices were prediced to within $30,000 (on the training data)
-* The model exibits a good balance of bias and variance as the R-sqaured terms of this model on both the training and test data are nearly identical
+    * With the final model, 83.8% of sale prices were predicted to within $30,000 (on the training data)
+* The model exhibits a good balance of bias and variance as the R-squared terms of this model on both the training and test data are nearly identical
 * The model can be further refined to incorporate more features, but as it stands, must collect the following information from users when estimating a home sale price:
     * Total basement square footage
     * Garage square footage
@@ -84,9 +84,9 @@ Below, the residuals are plotted versus the sale price.  A clear trend can be se
     * Neighborhood in which the home resides
     
 # 6 - Next Steps:
-* The characterisitcs of homes with absolute sale price errors exceeding \\$30,000 should be examined to determine if they exhibit any particular traits that could be better modeled in a future verson of this model
+* The characteristics of homes with absolute sale price errors exceeding $30,000 should be examined to determine if they exhibit any particular traits that could be better modeled in a future version of this model
 * Characteristics of higher value sales should also be examined to address the upward trend in the residuals with sale price
-* The model should first be optimized by removing features that appear to be redundant or colinear with other features that do not noticably increase the performance of the model when included
+* The model should first be optimized by removing features that appear to be redundant or colinear with other features that do not noticeably increase the performance of the model when included
 * Additional categorical variables can be encoded and evaluated for correlation with the sales price to possibly be included in a future version of this model
 * Test this model on housing data from other time periods and other areas of the country to determine national applicability
 __________________________________________
@@ -143,7 +143,7 @@ Codebook / Data Dictionary Entries for Original Features (not interaction terms)
 # Appendix B - How this Model Works
 This model takes in the numerical features listed above which were selected for their correlation to sale price or impact on model performance. These numerical features are then used to create interaction terms which are products of each of these features and themselves creating first and second order polynomial terms. Including these polynomial features was found to greatly enhance the model performance. Categorical columns which were one hot encoded are included for eight of the 28 total neighborhoods in Ames, Iowa which - when included in the model - enhanced its performance.  The model itself is a simple linear regression model performing ordinary least squares regression. The model is fitted against log-transformed sale price data as this was seen to improve performance. The predictions made by this model are themselves log data which are then exponentiated to return outputs in the original sale price units of dollars.
 
-# Appendix C - Comparison of Models Attemtped
+# Appendix C - Comparison of Models Attempted
 |                 | ILR     | data_1  | data_2  | data_3  | data_4  | data_5_poly | data_6_poly | data_7_poly_nbr (Final) | data_7_poly_nbr_log | data_7_poly_nbr_log_ridge | data_7_poly_nbr_log_lasso |
 |-----------------|---------|---------|---------|---------|---------|-------------|-------------|-------------------------|---------------------|---------------------------|---------------------------|
 | R2_train        | 0.8621  | 0.8269  | 0.8556  | 0.8743  | 0.8262  | 0.8735      | 0.8817      | 0.8902                  | 0.8946              | 0.8935                    | 0.8919                    |
