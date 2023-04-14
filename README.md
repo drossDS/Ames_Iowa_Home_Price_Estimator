@@ -55,8 +55,11 @@ The R-Squared values below indicate two things:
 
 A total of seven other models were attemtped, however, none delivered performacne metrics as good as those of the final model above.  Ridge and Lasso regularization techniques were attempted with the final model as well, but as the model already had an excellent balance of bias and variance, regularization only decreased model performance.  A comparison of all models with their performance metrics can be found in Appendix C and the code notebook.
 
+A plot of the residuals can be seen below for both the training and test data.  Note that outliers extend relatively far in each direction.  The gray lines indicate the +/- $30k boundary that was established, and it can clearly be seen that the vast majority of the data exist within those bounds.  Data outside of these boundaries need to be explored ingreater detail to uncover trends or characteristics which would improve the next-generation model.
 
 ![Residual Distribution](images/resid_distr.png)
+
+Below, the residuals are plotted versus the sale price.  A clear trend can be seen where the prediction error tends to increase as the values of the home also increases.  This means that there is an additional trend which needs to be modeled.  Again, focusing on high sale price homes could lead to useful insights on a making a better next-generation model.  As with the previous plots, the gray lines represent the +/- $30k boundaries.
 
 ![Residual v sale price](images/resid_v_saleprice.png)
 
@@ -81,10 +84,10 @@ A total of seven other models were attemtped, however, none delivered performacn
     * Neighborhood in which the home resides
     
 # 6 - Next Steps:
-* The characterisitcs of homes with absolute sale price errors exceeding \\$30,000 should be examined to determine if they exhibit and particular traits that could be better modeled in a future verson of this model
-    * A framework for this analysis has been established in Appendix B, though the analysis was not able to be completed in time
+* The characterisitcs of homes with absolute sale price errors exceeding \\$30,000 should be examined to determine if they exhibit any particular traits that could be better modeled in a future verson of this model
+* Characteristics of higher value sales should also be examined to address the upward trend in the residuals with sale price
 * The model should first be optimized by removing features that appear to be redundant or colinear with other features that do not noticably increase the performance of the model when included
-* Additional categorical variables can be encoded and evluated for correlation with the sales price to possibly be included in a future version of this model
+* Additional categorical variables can be encoded and evaluated for correlation with the sales price to possibly be included in a future version of this model
 * Test this model on housing data from other time periods and other areas of the country to determine national applicability
 __________________________________________
 # Appendix A - Data Dictionary for Final Model
