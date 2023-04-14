@@ -56,7 +56,9 @@ The R-Squared values below indicate two things:
 A total of seven other models were attemtped, however, none delivered performacne metrics as good as those of the final model above.  Ridge and Lasso regularization techniques were attempted with the final model as well, but as the model already had an excellent balance of bias and variance, regularization only decreased model performance.  A comparison of all models with their performance metrics can be found in Appendix C and the code notebook.
 
 
+![Residual Distribution](images/resid_distr.png)
 
+![Residual v sale price](images/resid_v_saleprice.png)
 
 
 # 4 - Model Limitations and Additional Refinements
