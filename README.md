@@ -36,7 +36,7 @@ A simple liear regression model was built, and features were added or removed it
 
 # 3 - Model Performance
 
-The final model met the overall requirement that the average sale price error (in either direction) be within $30k. The mean absolute error values in the table below are far below that limit.  Overall, the vast majority of the home prices were predicted to be within $30k of the true sale price with 83.8% achieving this metric.
+The final model met the overall requirement that the average sale price error (in either direction) be within $30k. The mean absolute error values in the table below are far below that limit.  Overall, the vast majority of the home prices were predicted to be within $30k of the true sale price with 83.8% achieving this metric (on the training data).
 
 The R-Squared values below indicate two things:
 * Almost 90% of the variabilty in sale price is accounted for by this model with the features selected
