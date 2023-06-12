@@ -161,5 +161,3 @@ This model takes in the numerical features listed above which were selected for 
 | cv_train_5      | 0.7699  | 0.706   | 0.7608  | 0.7532  | 0.6939  | 0.6263      | 0.5223      | 0.5479                  | 0.5479              | NaN                       | NaN                       |
 | R2_train_log    | NaN     | NaN     | NaN     | NaN     | NaN     | NaN         | NaN         | NaN                     | 0.8768              | 0.8729                    | 0.8735                    |
 | R2_test_log     | NaN     | NaN     | NaN     | NaN     | NaN     | NaN         | NaN         | NaN                     | 0.8662              | 0.8676                    | 0.8664                    |
-
-
